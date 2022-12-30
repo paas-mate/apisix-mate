@@ -22,5 +22,14 @@ echo "    tls:" >> $config_path
 echo "      cert: $ETCD_SERVER_CERT" >> $config_path
 echo "      key: $ETCD_SERVER_KEY" >> $config_path
 echo "      verify: true" >> $config_path
+echo "  role: traditional" >> $config_path
+echo "  role_traditional:" >> $config_path
+echo "    config_provider: etcd" >> $config_path
+echo "  admin:" >> $config_path
+echo "    admin_key" >> $config_path
+echo "      - name: admin" >> $config_path
+echo "        key: $FIXED_ADMIN_KEY" >> $config_path
+echo "        role: admin" >> $config_path
 cd $APISIX_HOME
+rm -rf /usr/local/apisix/conf
 ./bin/apisix start -c $APISIX_HOME/conf/config.yaml >>$APISIX_HOME/logs/apisix.stdout.log 2>>$APISIX_HOME/logs/apisix.stderr.log &
