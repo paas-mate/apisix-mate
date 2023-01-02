@@ -26,7 +26,7 @@ echo "  role: traditional" >> $config_path
 echo "  role_traditional:" >> $config_path
 echo "    config_provider: etcd" >> $config_path
 echo "  admin:" >> $config_path
-echo "    admin_key" >> $config_path
+echo "    admin_key:" >> $config_path
 echo "      - name: admin" >> $config_path
 echo "        key: $FIXED_ADMIN_KEY" >> $config_path
 echo "        role: admin" >> $config_path
