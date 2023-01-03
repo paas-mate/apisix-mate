@@ -18,8 +18,10 @@ do
 done
 echo "    prefix: \"/apisix\"" >> $config_path
 echo "    tls:" >> $config_path
-echo "      cert: $ETCD_SERVER_CERT" >> $config_path
-echo "      key: $ETCD_SERVER_KEY" >> $config_path
+CONF_ETCD_CLIENT_CERT=${ETCD_CLIENT_CERT:-/etc/kubernetes/pki/apiserver-etcd-client.crt}
+CONF_ETCD_CLIENT_KEY=${ETCD_CLIENT_KEY:-/etc/kubernetes/pki/apiserver-etcd-client.key}
+echo "      cert: $CONF_ETCD_CLIENT_CERT" >> $config_path
+echo "      key: $CONF_ETCD_CLIENT_KEY" >> $config_path
 echo "      verify: false" >> $config_path
 echo "  role: traditional" >> $config_path
 echo "  role_traditional:" >> $config_path
