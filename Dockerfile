@@ -1,7 +1,5 @@
 FROM ttbb/apisix:nake
 
-ENV APISIX_HOME=/opt/apisix
-
 WORKDIR /opt/apisix
 
 COPY docker-build /opt/apisix/mate

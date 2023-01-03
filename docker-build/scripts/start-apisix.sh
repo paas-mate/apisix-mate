@@ -28,7 +28,8 @@ echo "    config_provider: etcd" >> $config_path
 echo "  admin:" >> $config_path
 echo "    admin_key:" >> $config_path
 echo "      - name: admin" >> $config_path
-echo "        key: $FIXED_ADMIN_KEY" >> $config_path
+CONF_ADMIN_KEY=${ADMIN_KEY:-edd1c9f034335f136f87ad84b625c8f1}
+echo "        key: $CONF_ADMIN_KEY" >> $config_path
 echo "        role: admin" >> $config_path
 cd $APISIX_HOME
 ./bin/apisix start -c $APISIX_HOME/conf/config.yaml >>$APISIX_HOME/logs/apisix.stdout.log 2>>$APISIX_HOME/logs/apisix.stderr.log &
