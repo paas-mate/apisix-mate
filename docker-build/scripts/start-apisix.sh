@@ -32,16 +32,18 @@ echo "      - name: admin" >> $config_path
 CONF_ADMIN_KEY=${ADMIN_KEY:-edd1c9f034335f136f87ad84b625c8f1}
 echo "        key: $CONF_ADMIN_KEY" >> $config_path
 echo "        role: admin" >> $config_path
-echo "discovery:" >> $config_path
-echo "  nacos:" >> $config_path
-echo "    host:" >> $config_path
-echo "      - ${DISCOVERY_HOST}" >> $config_path
-echo "    prefix: \"/nacos/v1\"" >> $config_path
-echo "    fetch_interval: ${FETCH_INTERVAL}" >> $config_path
-echo "    weight: ${WEIGHT}" >> $config_path
-echo "    timeout:" >> $config_path
-echo "      connect: ${TIMEOUT_CONNECT}" >> $config_path
-echo "      send: ${TIMEOUT_SEND}" >> $config_path
-echo "      read: ${TIMEOUT_READ}" >> $config_path
+if [[ ${DISCOVERY_ENABLE} == "true" ]]; then
+  echo "discovery:" >> $config_path
+  echo "  nacos:" >> $config_path
+  echo "    host:" >> $config_path
+  echo "      - ${DISCOVERY_HOST}" >> $config_path
+  echo "    prefix: \"/nacos/v1\"" >> $config_path
+  echo "    fetch_interval: ${FETCH_INTERVAL}" >> $config_path
+  echo "    weight: ${WEIGHT}" >> $config_path
+  echo "    timeout:" >> $config_path
+  echo "      connect: ${TIMEOUT_CONNECT}" >> $config_path
+  echo "      send: ${TIMEOUT_SEND}" >> $config_path
+  echo "      read: ${TIMEOUT_READ}" >> $config_path
+fi
 cd $APISIX_HOME
 ./bin/apisix start -c $APISIX_HOME/conf/my_config.yaml >>$APISIX_HOME/logs/apisix.stdout.log 2>>$APISIX_HOME/logs/apisix.stderr.log &
